@@ -9,23 +9,37 @@ O projeto foi desenvolvido utilizando duas tecnologias:
 
 ## Instalação
 #### Instalando o NodeJS (Ubuntu)
-Abra o terminal e digite o comando de instalação do node:
-```
-sudo apt-get install nodejs
-```
-Certifique-se da instalação conferindo a versão do NodeJS instalada 
-```
-node -v 
-```
+- Abra o terminal e digite o comando de instalação do node:
+  ```
+  sudo apt-get install nodejs
+  ```
+  ou
+  ```
+  sudo apt install nodejs
+  ```
+- Certifique-se da instalação conferindo a versão do NodeJS instalada 
+  ```
+  node -v 
+  ```
+  ou
+  ```
+  nodejs -v
+  ```
+
 #### Instalando o npm
-Abra o terminal e digite o comando de instalação do npm:
-```
-sudo apt-get install npm
-```
-Certifique-se da instalação conferindo a versão do npm instalada 
-```
-npm -v 
-```
+
+- Abra o terminal e digite o comando de instalação do npm:
+  ```
+  sudo apt-get install npm
+  ```
+  ou
+  ```
+  sudo apt install npm
+  ```
+- Certifique-se da instalação conferindo a versão do npm instalada 
+  ```
+  npm -v 
+  ```
 
 ## Execução
 > **Nota:** Todos os comandos SQL estão no arquivo fonte.
