@@ -1,0 +1,110 @@
+// Arquivo que renderiza o HTML
+html
+  head
+    title=title
+    link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+    crossorigin="anonymous")
+    script(script src="https://code.jquery.com/jquery-3.1.1.min.js")
+    script(src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous")
+    script(src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous")
+  body
+    .container.py-5
+      .d-flex.justify-content-center.py-4
+        h1 Lista de Compras - Família Silva
+      .d-flex.pb-5
+        button.btn.btn-primary(data-toggle='modal', data-target='#addProduct') Adicionar produto
+
+        .modal.fade#addProduct
+          .modal-dialog
+            .modal-content
+              form(action="/add" method="POST")
+                .modal-header
+                  h5.modal-title Adicionar Produto
+                  button.close(data-dismiss="modal", aria-label="Close")
+                    span &times;
+                .modal-body
+                    input#id(name="id", type="hidden")
+                    .form-group
+                      label.col-form-label(for="name") Nome do produto
+                      input#name.form-control(name="name")
+                    .form-group
+                      label.col-form-label(for="amount") Quantidade
+                      input#amount.form-control(name="amount", type="number")
+                    .form-group
+                      label.col-form-label(for="obs") Observações
+                      textarea#obs.form-control(name="obs")
+                .modal-footer
+                  button.btn.btn-secondary(data-dismiss="modal") Fechar
+                  button.btn.btn-primary(type="submit") Adicionar produto
+
+      .d-flex.justify-content-center
+        table.table.table-stripped.table-hover
+          thead
+            tr
+              th(scope="col") ID
+              th(scope="col") Nome do produto
+              th(scope="col") Quantidade
+              th(scope="col") Observações
+              th
+          tbody
+            each product in products
+              tr(data-toggle='modal', data-target='#editProduct', data-id=product.id, data-name=product.name, data-amount=product.amount, data-obs=product.obs, style="cursor: pointer")
+                th(scope="row")= product.id
+                td= product.name
+                td= product.amount
+                td= product.obs
+                td
+                  button.deleteProduct.btn.btn-danger(type="submit", data-id=product.id) Apagar
+
+      .modal.fade#editProduct
+          .modal-dialog
+            .modal-content#productDetails
+              form(action="/edit" method="POST")
+                .modal-header
+                  h5.modal-title Editar Produto
+                  button.close(data-dismiss="modal", aria-label="Close")
+                    span &times;
+                .modal-body
+                    input#id(name="id", type="hidden")
+                    .form-group
+                      label.col-form-label(for="name") Nome do produto
+                      input#name.form-control(name="name")
+                    .form-group
+                      label.col-form-label(for="amount") Quantidade
+                      input#amount.form-control(name="amount", type="number")
+                    .form-group
+                      label.col-form-label(for="obs") Observações
+                      textarea#obs.form-control(name="obs")
+                .modal-footer
+                  button.btn.btn-secondary(data-dismiss="modal") Fechar
+                  button.btn.btn-primary(type="submit") Salvar alterações
+    script.
+      $(function(){
+        $(".table-hover").find('tr[data-id]').on('click', function () {
+          $('#editProduct').val($('input[name="id"]').val($(this).data('id')));
+          $('#editProduct').val($('input[name="name"]').val($(this).data('name')));
+          $('#editProduct').val($('input[name="amount"]').val($(this).data('amount')));
+          $('#editProduct').val($('textarea[name="obs"]').val($(this).data('obs')));
+          $('#editProduct').modal('show');
+        });
+      });
+      $(document).ready(function (){
+        $(".deleteProduct").on('click', function(){
+          const id = $(this).data('id');
+          $.ajax({
+            url: '/delete/' + id,
+            type: 'DELETE',
+            success: function(res) {
+              console.log('Produto deletado');
+              window.location.href='/';
+            },
+            error: function(err) {
+              console.error(err);
+            }
+          });
+        })
+      });
+      
+      
