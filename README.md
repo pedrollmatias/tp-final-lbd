@@ -5,44 +5,11 @@ Foi desenvolvida uma aplicação para controlar a lista de compras de uma determ
 O projeto foi desenvolvido utilizando duas tecnologias:
 1. [PostgreSQL](https://www.postgresql.org/)
 2. [Nodejs (Javascript)](https://nodejs.org/en/)
-3. [Node Package Manager (npm)](https://www.npmjs.com/)
-
-## Instalação
-#### Instalando o NodeJS (Ubuntu)
-- Abra o terminal e digite o comando de instalação do node:
-  ```
-  sudo apt-get install nodejs
-  ```
-  ou
-  ```
-  sudo apt install nodejs
-  ```
-- Certifique-se da instalação conferindo a versão do NodeJS instalada 
-  ```
-  node -v 
-  ```
-  ou
-  ```
-  nodejs -v
-  ```
-
-#### Instalando o npm
-
-- Abra o terminal e digite o comando de instalação do npm:
-  ```
-  sudo apt-get install npm
-  ```
-  ou
-  ```
-  sudo apt install npm
-  ```
-- Certifique-se da instalação conferindo a versão do npm instalada 
-  ```
-  npm -v 
-  ```
 
 ## Execução
-> **Nota:** Todos os comandos SQL estão no arquivo fonte.
+> **Nota 1:** Certifique-se de ter o PostgreSQL, Node.js e npm instalados em seu ambiente.
+>
+> **Nota 2:** Todos os comandos SQL estão no arquivo fonte.
 > 
 Faça o download ou clone o repositório em um diretório de sua preferência.
 
